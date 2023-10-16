@@ -1,10 +1,1 @@
-
-cd
-
-
-
-cls[
-aflsppb
-
-ls
-cd
+printf task
