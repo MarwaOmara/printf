@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 		PP = find_precis(PP, &flags, ap);
 		if  (find_mod(PP, &flags))
 			PP++;
-		if (find_specifier(PP))
+		if (!find_specifier(PP))
 			result += p_from_to(Stt, PP, flags.l_mod || flags.h_mod ? PP - 1 : (0));
 		else
 			result += find_print_function(PP, ap, &flags);

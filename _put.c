@@ -22,15 +22,15 @@ int _puts(char *cts)
 
 int _putchar(int c)
 {
-	static int P;
+	static int j;
 	static char buffer[LOCAL_BUFFER_SIZE];
 
-	if (c == BUFFER_FLUSH || P >= LOCAL_BUFFER_SIZE)
+	if (c == BUFFER_FLUSH || j >= LOCAL_BUFFER_SIZE)
 	{
-		write(1, buffer, P);
-		P = 0;
+		write(1, buffer, j);
+		j = 0;
 	}
 	if (c != BUFFER_FLUSH)
-		buffer[P++] = c;
+		buffer[j++] = c;
 	return (1);
 }
