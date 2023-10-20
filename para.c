@@ -1,23 +1,23 @@
 #include "main.h"
 
 /**
- * init_para - function used to resset buffer
- * @para: struct
+ * init_flags - function used to resset buffer
+ * @flags: struct parameter
  * @ap: pointer to argument
- * Return: voi
+ * Return: void
  */
 
-void init_para(parameters_token *para, va_list ap)
+void init_flags(flags_type *flags, va_list ap)
 {
-	para->unsign = 0;
-	para->plus_flag = 0;
-	para->space_flag = 0;
-	para->hashtag_flag = 0;
-	para->zero_flag = 0;
-	para->minus_flag = 0;
-	para->width = 0;
-	para->precision = UNIT_MAX;
-	para->h_modifier = 0;
-	para->l_modifier = 0;
+	flags->unsign = 0;
+	flags->plus = 0;
+	flags->space = 0;
+	flags->hashtag = 0;
+	flags->zero = 0;
+	flags->minus = 0;
+	flags->width = 0;
+	flags->prec = UNIT_MAX;
+	flags->h_mod = 0;
+	flags->l_mod = 0;
 	(void)ap;
 }

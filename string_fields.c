@@ -8,7 +8,7 @@
  * Return: pointer
  */
 
-char *get_pres(char *p, parameters_token *para, va_list ap)
+char *get_pres(char *p, flags_type *flags, va_list ap)
 {
 	int Y = 0;
 
@@ -22,9 +22,9 @@ char *get_pres(char *p, parameters_token *para, va_list ap)
 	}
 	else
 	{
-		while (_isdigit(*p))
+		while (_Digit(*p))
 			Y = Y * 10 (*p++ - '0');
 	}
-	para->precision = Y;
+	flags->precis = Y;
 	return (p);
 }

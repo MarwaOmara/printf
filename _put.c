@@ -5,13 +5,13 @@
  * @str: string pointer
  * Return: void
  */
-int _puts(char *str)
+int _puts(char *cts)
 {
-	char *P = str;
+	char *P = cts;
 
-	while (*str)
-		_putchar(*str++);
-	return (str - P)	/*address of last byte of string minus first byte will give  lenght*/
+	while (*cts)
+		_putchar(*cts++);
+	return (cts - P)	/*address of last byte of string minus first byte will give  lenght*/
 }
 
 /**
@@ -23,7 +23,7 @@ int _puts(char *str)
 int _putchar(int c)
 {
 	static int P;
-	static char  buffer[LOCAL_BUFFER_SIZE];
+	static char buffer[LOCAL_BUFFER_SIZE];
 
 	if (c == BUFFER_FLUSH || P >= LOCAL_BUFFER_SIZE)
 	{

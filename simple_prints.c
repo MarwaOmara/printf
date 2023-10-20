@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * print_from_to - prints character between two addresses or more
+ * p_from_to - prints character between two addresses or more
  * @start: address1
  * @stop: address2
  * @excelude: address to avoid
  * Return: numbered bytes that got printed
  */
 
-int print_from_to(char *start, char *stop, char *excelude)
+int p_from_to(char *start, char *stop, char *excelude)
 {
 	int result = 0;
 
@@ -22,44 +22,44 @@ int print_from_to(char *start, char *stop, char *excelude)
 }
 
 /**
- * print_rev - reverse the string
+ * prev - reverse the string
  * @ap: string
- * @para: struct parameter
+ * @flags: struct parameter
  * Return: numbered bytes printed
  */
 
-int print_rev(va_list ap, parameters_token *para)
+int prev(va_list ap, flags_type *flags)
 {
-	int len, result = 0;
-	char *str = va_arg(ap, char *);
-	(void)para;
+	int lenn, result = 0;
+	char *cts = va_arg(ap, char *);
+	(void)flags;
 
-	if (str)
+	if (cts)
 	{
-		for (len = 0; *str; str++)
-			len++;
-		str--;
-		for (l len > 0; lenn--, str--)
-			ressult += _putchar(*str);
+		for (lenn = 0; *cts; cts++)
+			lenn++;
+		cts--;
+		for (; lenn > 0; lenn--, cts--)
+			result += _putchar(*cts);
 	}
 	return (result);
 }
 
 /**
- * print_rot13 - prints string but in rot13 algo
+ * prot13 - prints string but in rot13 algo
  * @ap: string
- * @para: parameter struct
- * Return: numbered bytes printed
+ * @flags: parameter struct
+ * Return: int
  */
 
-int print_rot13(va_list ap, parameters_token *para)
+int prot13(va_list ap, flags_type *flags)
 {
 	int i, x;
 	int itr = 0;
 	char array[] = 
 		"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
 	char *y = va_arg(ap, char *);
-	(void)para;
+	(void)flags;
 
 	i = 0;
 	x = 0;
@@ -71,7 +71,7 @@ int print_rot13(va_list ap, parameters_token *para)
 			itr += _putchar(array[x]);
 		}
 		else
-			itr += _putchhar(y[i]);
+			itr += _putchar(y[i]);
 		i++;
 	}
 	return (itr);

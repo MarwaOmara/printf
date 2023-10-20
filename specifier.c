@@ -1,28 +1,28 @@
 #include "main.h"
 
 /**
- * get_specifier - checks which format is included within the function
+ * find_specifier - checks which format is included within the function
  * @s: string
  * Return: number of size in bytes printed
  */
 
-int (*get_specifier(char *s))(va_list ap, parameters_token *para)
+int (*find_specifier(char *s))(va_list ap, flags_type *flags)
 {
-	specifier_type specifiers[] = {
-		{"r", print_rev},
+	spec_type specifiers[] = {
+		{"r", prev},
 		{"S", print_S},
-		{"c", print_char},
-		{"d", print_int},
-		{"i", print_int},
-		{"s", print_string},
-		{"%", print_percent},
-		{"b", print_binary},
-		{"o", print_octal},
+		{"c", printC},
+		{"d", printT},
+		{"i", printT},
+		{"s", printSt},
+		{"%", print_P},
+		{"b", pbinary},
+		{"o", poctal},
 		{"u", print_unsigned},
-		{"x", print_hex},
-		{"X", print_HEX},
+		{"x", hex_p},
+		{"X", HEX_p},
 		{"p", print_address},
-		{"R", print_rot13},
+		{"R", prot13},
 		{NULL, NULL}
 	};
 	int i = 0;
@@ -39,63 +39,63 @@ int (*get_specifier(char *s))(va_list ap, parameters_token *para)
 }
 
 /**
- * get_print_function - finds function format
+ * find_print_function - finds function format
  * @s: string
  * @ap: pointer to argument
- * @para: struct parameter
+ * @flags: struct parameter
  * return: how many bytes printed
  */
 
-int get_print_function(char *s, va_list ap, parameters_token *para)
+int find_print_function(char *s, va_list ap, flags_type *flags)
 {
-	int (*f)(va_list, parameters_token *) = get_specifier(s);
+	int (*f)(va_list, flags_type *) = get_specifier(s);
 
 	if (f)
-		return (f(ap, para));
+		return (f(ap, flags));
 	return (0);
 }
 
 /**
- * get_flag - checks for a flag in the function
+ * find_flag - checks for a flag in the function
  * @s: string
- * @para: struct parameter
+ * @flags: struct parameter
  * Return: true or false
  */
 
-int get_flag(char *s, parameters_token *para)
+int find_flag(char *s, flags_type *flags)
 {
 	int i = 0;
 
 	switch (*s)
 	{
 		case '+':
-			i = para->plus_flag = 1;
+			i = flags->plus = 1;
 			break;
 		case '0':
-			i = para->zero_flag = 1;
+			i = flags->zero = 1;
 			break;
 		case ' ':
-			i = para->space_flag = 1;
+			i = flags->space = 1;
 			break;
 		case '#':
-			i = para->hashtag_flag = 1;
+			i = flags->hashtag = 1;
 			break;
 		case '-':
-			i = para->minus_flag = 1;
+			i = flags->minus = 1;
 			break;
 	}
 	return (i);
 }
 
 /**
- * get_wiidth - checks width from string
+ * find_width - checks width from string
  * @s: string
- * @para: struct parameter
+ * @flags: struct parameter
  * @ap: pointer to argument
  * Return: new pointer
  */
 
-char *get_width(char *s, parameters_token *para, va_list ap)
+char *find_width(char *s, flags_type *flags, va_list ap)
 {
 	int Y = 0;
 
@@ -106,9 +106,32 @@ char *get_width(char *s, parameters_token *para, va_list ap)
 	}
 	else
 	{
-		while (_isdigit(*s))
+		while (_Digit(*s))
 			Y = Y * 10 + (*s++ - '0');
 	}
-	para->width = Y;
+	flag->width = Y;
 	return (s);
+}
+
+/**
+ * find_mod - finds modifier func
+ * @s: string
+ * @flags: parameter
+ * Return:int on success
+ */
+
+int find_mod(char *s, flags_type *flags)
+{
+	int i = 0;
+
+	switch (*s)
+	{
+	case 'h':
+		i = flags->h_mod = 1;
+		break;
+	case 'l':
+		i = flags->l_mod = 1;
+		break;
+	}
+	return (i);
 }
