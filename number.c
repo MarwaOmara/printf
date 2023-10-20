@@ -55,7 +55,7 @@ int print_unsigned(va_list ap, flags_type *flags)
 	else
 		L = (unsigned int)va_arg(ap, unsigned int);
 	flags->unsign = 1;
-	return (pnumber(conv(L, 10, CONV_UN,flags), flags));
+	return (pnumber(conv(L, 10, CONV_UN, flags), flags));
 }
 
 /**

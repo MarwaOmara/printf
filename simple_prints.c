@@ -84,7 +84,7 @@ int prot13(va_list ap, flags_type *flags)
 	return (itr);
 }
 /**
- * get_ascii - changes char to int
+ * find_ascii - changes char to int
  * @c: character
  * Return: Int
  */
