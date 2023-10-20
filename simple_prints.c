@@ -54,25 +54,46 @@ int prev(va_list ap, flags_type *flags)
 
 int prot13(va_list ap, flags_type *flags)
 {
-	int i, x;
-	int itr = 0;
-	char array[] =
-		"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
-	char *y = va_arg(ap, char *);
-	(void)flags;
+	int i = 0, itr = 0, ascii, c;
+	char *s;
 
-	i = 0;
-	x = 0;
-	while (y[i])
+	if (flags == NULL)
+		return (0);
+	s = va_arg(ap, char *);
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		if ((y[i] >= 'A' && y[i] <= 'Z') || (y[i] >= 'a' && y[i] <= 'z'))
+		ascii = find_ascii(s[i]);
+		if (ascii)
 		{
-			x = y[i] - 65;
-			itr += _putchar(array[x]);
+			c = (s[i] - ascii) + 13;
+			c = (c % 26);
+			c = (c + ascii);
+			write(1, &c, 1);
+			itr++;
+			i++;
 		}
 		else
-			itr += _putchar(y[i]);
-		i++;
+		{
+			write(1, &s[i], 1);
+			itr++;
+			i++;
+		}
 	}
 	return (itr);
+}
+/**
+ * get_ascii - changes char to int
+ * @c: character
+ * Return: Int
+ */
+int find_ascii(char c)
+{
+	int low, up;
+
+	low = ('a' * (c >= 'a' && c <= 'z'));
+	up = ('A' * (c >= 'A' && c <= 'Z'));
+
+	return (low + up);
 }

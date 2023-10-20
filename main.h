@@ -101,6 +101,7 @@ int poctal(va_list ap, flags_type *flags);	/*task#3*/
 int p_from_to(char *start, char *stop, char *excelude);
 int prev(va_list ap, flags_type *flags);	/*task#13*/
 int prot13(va_list ap, flags_type *flags);	/*task#14*/
+int find_ascii(char c);
 
 /*print_number */
 int _Digit(int c);
