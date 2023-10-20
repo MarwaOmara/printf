@@ -6,7 +6,7 @@
  * Return: number of size in bytes printed
  */
 
-int (*find_specifier(char *s))(va_list ap, flags_type *flags)
+int (*find_specifier(char *s))(va_list ap, flags_type * flags)
 {
 	spec_type specifiers[] = {
 		{"r", prev},
@@ -43,7 +43,7 @@ int (*find_specifier(char *s))(va_list ap, flags_type *flags)
  * @s: string
  * @ap: pointer to argument
  * @flags: struct parameter
- * return: how many bytes printed
+ * Return: how many bytes printed
  */
 
 int find_print_function(char *s, va_list ap, flags_type *flags)

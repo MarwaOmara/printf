@@ -9,29 +9,30 @@
 
 #define NULL_STRING "(null)"
 #define LOCAL_BUFFER_SIZE 1024
-/* mandated in Task4 "Use a local buffer of 1024 chars in order to call write as little as possible." */
+
+/* mandated in Task4"Use a local buffer of 1024" */
+
 #define BUFFER_FLUSH -1
 
 #define FLAGS_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-/*used for typedef struct,  Either set the value 0 at start, or Use again to resset value*/
-
+/*typedef struct, set the value 0 at start, or resset value*/
 
 #define CONV_LOW	1
 #define CONV_UN		2
 
 /**
  * struct flag - gives struct that flags a specific specifier
- * @unsigned: unsigned, which can be negative
- * @plus_flag: returns 1   if plus_flag specified
- * @space_flag: returns 1 if _flag specified
- * @hashtag_flag: returns 1 if hashtag_flag 
- * @zero_flag: returns 1 if _flag specified
- * @minus_flag: returns 1 if _flag specified
- * l_modifier: returns 1 if it's modifier specified
- * @h_modifier: returns 1 if _flag specified
+ * @unsign: unsigned, which can be negative
+ * @plus: returns 1   if plus_flag specified
+ * @space: returns 1 if _flag specified
+ * @hashtag: returns 1 if hashtag_flag
+ * @zero: returns 1 if _flag specified
+ * @minus: returns 1 if _flag specified
+ * @l_mod: returns 1 if it's modifier specified
+ * @h_mod: returns 1 if _flag specified
  *
  * @width: if width specified
- * @precision: if precision specified
+ * @precis: if precision specified
  */
 
 typedef struct flag
@@ -43,7 +44,7 @@ typedef struct flag
 	unsigned int hashtag		: 1;
 	unsigned int zero		: 1;	/* task#11 */
 	unsigned int minus		: 1;	/* task#12*/
-	
+
 	unsigned int width;			/* task #8 */
 	unsigned int precis;
 
@@ -63,24 +64,23 @@ typedef struct specifier
 	int (*f)(va_list, flags_type *);
 } spec_type;
 
-/** Splitting different function into multiple files for easier access, will also mention which task
-// each function is related to**/
+/*Splitting different function into multiple files for easier access*/
 
 /* functions for _put.c */
 int _puts(char *cts);
 int _putchar(int c);
 
 /* print_functions.c */
-int printC(va_list ap, flags_type *flags); /* Task #0 */ 
-int printT(va_list ap, flags_type *flags);   /* task #1 */
+int printC(va_list ap, flags_type *flags); /* Task #0 */
+int printT(va_list ap, flags_type *flags);  /* task #1 */
 int printSt(va_list ap, flags_type *flags); /* task #0 */
-int print_P(va_list ap, flags_type *flags);     /* task #0 */
-int print_S(va_list ap, flags_type *flags);  /* task #5 */
+int print_P(va_list ap, flags_type *flags); /* task #0 */
+int print_S(va_list ap, flags_type *flags); /* task #5 */
 
 /* numbers.c functions */
 char *conv(long int number, int base, int tags, flags_type *flags);
-int print_unsigned(va_list ap, flags_type *flags);  /* task #3 */
-int print_address(va_list ap, flags_type *flags);   /* task #6 */
+int print_unsigned(va_list ap, flags_type *flags); /* task #3 */
+int print_address(va_list ap, flags_type *flags);  /* task #6 */
 
 /* specifiers.c CHECKS WHICH SPECIFIER, Used almost in all task functions ! */
 

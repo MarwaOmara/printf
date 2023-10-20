@@ -17,7 +17,7 @@ int HEX_p(va_list ap, flags_type *flags)
 		L = (unsigned long)va_arg(ap, unsigned long);
 	else if (flags->h_mod)
 		L = (unsigned short int)va_arg(ap, unsigned int);
-	else 
+	else
 		L = (unsigned int)va_arg(ap, unsigned int);
 
 	cts = conv(L, 16, CONV_UN, flags);
@@ -60,7 +60,7 @@ int hex_p(va_list ap, flags_type *flags)
 }
 
 /**
- * pbinary - prints binary 
+ * pbinary - prints binary
  * @ap: pointer to argument
  * @flags: parameter
  * Return: int
@@ -93,7 +93,7 @@ int poctal(va_list ap, flags_type *flags)
 	if (flags->l_mod)
 		L = (unsigned long)va_arg(ap, unsigned long);
 	else if (flags->h_mod)
-		L = (unsigned short int )va_arg(ap, unsigned int);
+		L = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		L = (unsigned int)va_arg(ap, unsigned int);
 	cts = conv(L, 8, CONV_UN, flags);

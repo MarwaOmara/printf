@@ -56,7 +56,7 @@ int prot13(va_list ap, flags_type *flags)
 {
 	int i, x;
 	int itr = 0;
-	char array[] = 
+	char array[] =
 		"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
 	char *y = va_arg(ap, char *);
 	(void)flags;
@@ -65,7 +65,7 @@ int prot13(va_list ap, flags_type *flags)
 	x = 0;
 	while (y[i])
 	{
-		if ((y[i] >= 'A' && y[i] <='Z') || (y[i] >= 'a' && y[i] <= 'z'))
+		if ((y[i] >= 'A' && y[i] <= 'Z') || (y[i] >= 'a' && y[i] <= 'z'))
 		{
 			x = y[i] - 65;
 			itr += _putchar(array[x]);

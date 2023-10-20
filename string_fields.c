@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * get_pres - gets precision from string
+ * find_precis - gets precision from string
  * @p: string
- * @para: struct of parameter
+ * @flags: struct of parameter
  * @ap: pointer to argument
  * Return: pointer
  */

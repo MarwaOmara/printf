@@ -12,7 +12,7 @@ int _Digit(int c)
 }
 
 /**
- * len - lenght of string
+ * _len - lenght of string
  * @s: string to analyze
  * Return: int
  */
@@ -58,7 +58,7 @@ int pnumber(char *cts, flags_type *flags)
 }
 
 /**
- * print_number_right_shift - variaty of number prints
+ * pn_right_sft - variaty of number prints
  * @cts: string but numbers
  * @flags: parameter struct
  * Return: chars
@@ -76,13 +76,14 @@ int pn_right_sft(char *cts, flags_type *flags)
 		cts++;
 	else
 		minus = 0;
-	if((flags->plus && !minus2) || (!flags->plus && flags->space && !minus2))
+	if ((flags->plus && !minus2) || (!flags->plus && flags->space && !minus2))
 		i++;
 	if (minus && C == '0')
 		N += _putchar('-');
 	if (flags->plus && !minus2 && C == '0' && !flags->unsign)
 		N += _putchar('+');
-	else if (!flags->plus && flags->space && !minus2 && !flags->unsign && flags->zero)
+	else if (!flags->plus && flags->space &&
+			!minus2 && !flags->unsign && flags->zero)
 		N += _putchar(' ');
 	while (i++ < flags->width)
 		N += _putchar(C);
@@ -90,7 +91,8 @@ int pn_right_sft(char *cts, flags_type *flags)
 		N += _putchar('-');
 	if (flags->plus && !minus2 && C == ' ' && !flags->unsign)
 		N += _putchar('+');
-	else if (!flags->plus && flags->space && !minus2 && !flags->unsign && !flags->zero)
+	else if (!flags->plus && flags->space
+			&& !minus2 && !flags->unsign && !flags->zero)
 		N += _putchar(' ');
 	N += _puts(cts);
 	return (N);
@@ -109,7 +111,7 @@ int pn_left_sft(char *cts, flags_type *flags)
 	char C = ' ';
 
 	N = 0;
-	if(flags->zero && !flags->minus)
+	if (flags->zero && !flags->minus)
 		C = '0';
 	minus = minus2 = (!flags->unsign && *cts == '-');
 	if (minus && i < flags->width && C == '0' && !flags->minus)

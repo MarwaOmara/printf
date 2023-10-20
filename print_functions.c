@@ -51,13 +51,13 @@ int printC(va_list ap, flags_type *flags)
 int printSt(va_list ap, flags_type *flags)
 {
 	char *cts = va_arg(ap, char *), C = ' ';
-	unsigned int K = 0, result = 0, i = 0 , j;
+	unsigned int K = 0, result = 0, i = 0, j;
 
 	(void)flags;
 	switch ((int)(!cts))
 	case 1:
 		cts = NULL_STRING;
-	
+
 		j = K = _len(cts);
 		if (flags->precis < K)
 			j = K = flags->precis;
@@ -77,7 +77,8 @@ int printSt(va_list ap, flags_type *flags)
 			if (flags->precis != UINT_MAX)
 				for (i = 0; i < K; i++)
 					result += _putchar(*cts++);
-			else result += _puts(cts);
+			else
+				result += _puts(cts);
 		}
 		return (result);
 }
@@ -97,7 +98,7 @@ int print_P(va_list ap, flags_type *flags)
 }
 
 /**
- * print_S special print format
+ * print_S - special print format
  * @ap: pointer to argument
  * @flags: parameters
  * Return: int
@@ -117,7 +118,7 @@ int print_S(va_list ap, flags_type *flags)
 		{
 			result += _putchar('\\');
 			result += _putchar('x');
-			hex = conv(*cts, 16 , 0, flags);
+			hex = conv(*cts, 16, 0, flags);
 			if (!hex[1])
 				result += _putchar('0');
 			result += _puts(hex);

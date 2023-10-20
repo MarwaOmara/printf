@@ -19,7 +19,8 @@ int _printf(const char *format, ...)
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	for (PP = (char *)format; *PP; PP++)   /*checks if the pointer value exists or not*/
+	for (PP = (char *)format; *PP; PP++)
+		/*checks if the pointer value exists or not*/
 	{
 		init_flags(&flags, ap);
 		if (*PP != '%')
@@ -29,7 +30,8 @@ int _printf(const char *format, ...)
 		}
 		Stt = PP;
 		PP++;
-		while (find_flag(PP, &flags))	/*checks if the char is Flag character"check main.h" */
+		while (find_flag(PP, &flags))
+			/*checks if the char is Flag character"check main.h" */
 		{
 			PP++;	/*iterate to next char */
 		}
@@ -44,5 +46,5 @@ int _printf(const char *format, ...)
 	}
 	_putchar(BUFFER_FLUSH);
 	va_end(ap);
-	return(result);
+	return (result);
 }
