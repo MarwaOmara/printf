@@ -11,7 +11,7 @@ int _puts(char *cts)
 
 	while (*cts)
 		_putchar(*cts++);
-	return (cts - P)	/*address of last byte of string minus first byte will give  lenght*/
+	return (cts - P);	/*address of last byte of string minus first byte will give  lenght*/
 }
 
 /**

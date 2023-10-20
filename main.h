@@ -9,11 +9,11 @@
 
 #define NULL_STRING "(null)"
 #define LOCAL_BUFFER_SIZE 1024
-// mandated in Task4 "Use a local buffer of 1024 chars in order to call write as little as possible." //
+/* mandated in Task4 "Use a local buffer of 1024 chars in order to call write as little as possible." */
 #define BUFFER_FLUSH -1
 
 #define FLAGS_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-//used for typedef struct,  Either set the value 0 at start, or Use again to resset value//
+/*used for typedef struct,  Either set the value 0 at start, or Use again to resset value*/
 
 
 #define CONV_LOW	1
@@ -37,16 +37,19 @@
 typedef struct flag
 {
 	unsigned int unsign		: 1;
+
 	unsigned int plus		: 1;	/* task #7  */
 	unsigned int space		: 1;
 	unsigned int hashtag		: 1;
 	unsigned int zero		: 1;	/* task#11 */
 	unsigned int minus		: 1;	/* task#12*/
-	unsigned int h_mod		: 1;	/* task #8 */
-	unsigned int l_mod		: 1;
-	unsigned int width;			/* task #9 */
-	unsigned int precis;			/* task#10*/
-} flags_type
+	
+	unsigned int width;			/* task #8 */
+	unsigned int precis;
+
+	unsigned int h_mod		: 1;	/* task #9 */
+	unsigned int l_mod		: 1;	/* task#10*/
+} flags_type;
 
 /**
  * struct specifier - struct token
@@ -54,7 +57,7 @@ typedef struct flag
  * @f: pointer to function
  */
 
-type struct specifier
+typedef struct specifier
 {
 	char *specifier;
 	int (*f)(va_list, flags_type *);
@@ -89,15 +92,15 @@ char *find_width(char *s, flags_type *flags, va_list ap);
 
 /* number_convert */
 
-int pbinary(valist ap, flags_type *flags);	/* task #2 */
+int pbinary(va_list ap, flags_type *flags);	/* task #2 */
 int HEX_p(va_list ap, flags_type *flags);	/*task#3*/
-int hex_p(va_list ap. flags_type *flags);	/*task#3*/
+int hex_p(va_list ap, flags_type *flags);	/*task#3*/
 int poctal(va_list ap, flags_type *flags);	/*task#3*/
 
 /* sim_printers.c */
-int p_from_to(char *start, char *stop, char excelude);
+int p_from_to(char *start, char *stop, char *excelude);
 int prev(va_list ap, flags_type *flags);	/*task#13*/
-int prot12(va_list ap, flags_type *flags);	/*task#14*/
+int prot13(va_list ap, flags_type *flags);	/*task#14*/
 
 /*print_number */
 int _Digit(int c);
@@ -110,7 +113,7 @@ int pn_left_sft(char *cts, flags_type *flags);
 void init_flags(flags_type *flags, va_list ap);
 
 /* string_fields.c */
-char *get_precis(char *p, flags_type *flags, va_list ap);
+char *find_precis(char *p, flags_type *flags, va_list ap);
 
 /* _printf.c */
 int _printf(const char *format, ...);

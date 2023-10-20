@@ -16,7 +16,7 @@ void init_flags(flags_type *flags, va_list ap)
 	flags->zero = 0;
 	flags->minus = 0;
 	flags->width = 0;
-	flags->prec = UNIT_MAX;
+	flags->precis = UINT_MAX;
 	flags->h_mod = 0;
 	flags->l_mod = 0;
 	(void)ap;

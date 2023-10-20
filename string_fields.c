@@ -8,7 +8,7 @@
  * Return: pointer
  */
 
-char *get_pres(char *p, flags_type *flags, va_list ap)
+char *find_precis(char *p, flags_type *flags, va_list ap)
 {
 	int Y = 0;
 
@@ -23,7 +23,7 @@ char *get_pres(char *p, flags_type *flags, va_list ap)
 	else
 	{
 		while (_Digit(*p))
-			Y = Y * 10 (*p++ - '0');
+			Y = Y * 10 + (*p++ - '0');
 	}
 	flags->precis = Y;
 	return (p);

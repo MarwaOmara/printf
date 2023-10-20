@@ -19,12 +19,12 @@ int _Digit(int c)
 
 int _len(char *s)
 {
-	int i = 0
+	int i = 0;
 
 		while (*s++)
 			i++;
 	return (i);
-}		// can use recursive func as well,//
+}		/* can use recursive func as well,*/
 
 /**
  * pnumber - prints variaty of numbers
@@ -35,7 +35,7 @@ int _len(char *s)
 
 int pnumber(char *cts, flags_type *flags)
 {
-	unsigned int N = _len(str);
+	unsigned int N = _len(cts);
 	int Negative = (!flags->unsign && *cts == '-');
 
 	if (!flags->precis && *cts == '0' && !cts[1])
@@ -45,9 +45,9 @@ int pnumber(char *cts, flags_type *flags)
 		cts++;
 		N--;
 	}
-	if (flags->precis != UNIT_MAX)
+	if (flags->precis != UINT_MAX)
 		while (N++ < flags->precis)
-			*--str = '0';
+			*--cts = '0';
 	if (Negative)
 		*--cts = '-';
 
@@ -66,17 +66,17 @@ int pnumber(char *cts, flags_type *flags)
 
 int pn_right_sft(char *cts, flags_type *flags)
 {
-	unsigned int N = 0, minus, minus2, i = _len(str);
+	unsigned int N = 0, minus, minus2, i = _len(cts);
 	char C = ' ';
 
 	if (flags->zero && !flags->minus)
 		C = '0';
 	minus = minus2 = (!flags->unsign && *cts == '-');
-	if (neg && i < flags-width && C == '0' && !flags->minus)
+	if (minus && i < flags->width && C == '0' && !flags->minus)
 		cts++;
 	else
-		neg = 0;
-	if((flags>plus && !minus2) || (!flags->plus && flags->space && !minus2))
+		minus = 0;
+	if((flags->plus && !minus2) || (!flags->plus && flags->space && !minus2))
 		i++;
 	if (minus && C == '0')
 		N += _putchar('-');
@@ -92,8 +92,8 @@ int pn_right_sft(char *cts, flags_type *flags)
 		N += _putchar('+');
 	else if (!flags->plus && flags->space && !minus2 && !flags->unsign && !flags->zero)
 		N += _putchar(' ');
-	N += _puts(cts;
-	return (n);
+	N += _puts(cts);
+	return (N);
 }
 
 /**
@@ -123,6 +123,6 @@ int pn_left_sft(char *cts, flags_type *flags)
 		N += _putchar(' '), i++;
 	N += _puts(cts);
 	while (i++ < flags->width)
-		n += _putchar(C);
+		N += _putchar(C);
 	return (N);
 }

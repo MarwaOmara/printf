@@ -48,7 +48,7 @@ int (*find_specifier(char *s))(va_list ap, flags_type *flags)
 
 int find_print_function(char *s, va_list ap, flags_type *flags)
 {
-	int (*f)(va_list, flags_type *) = get_specifier(s);
+	int (*f)(va_list, flags_type *) = find_specifier(s);
 
 	if (f)
 		return (f(ap, flags));
@@ -109,7 +109,7 @@ char *find_width(char *s, flags_type *flags, va_list ap)
 		while (_Digit(*s))
 			Y = Y * 10 + (*s++ - '0');
 	}
-	flag->width = Y;
+	flags->width = Y;
 	return (s);
 }
 

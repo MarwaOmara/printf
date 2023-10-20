@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int result = 0;
 	va_list ap;
 	char *PP, *Stt;
-	flags_type *flags = FLAGS_INIT;
+	flags_type flags = FLAGS_INIT;
 
 	va_start(ap, format);
 
@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 		if  (find_mod(PP, &flags))
 			PP++;
 		if (find_specifier(PP))
-			result += print_from_to(Stt, PP, flags.l_mod || flags.h_mod ? PP - 1 : 0);
+			result += p_from_to(Stt, PP, flags.l_mod || flags.h_mod ? PP - 1 : (0));
 		else
 			result += find_print_function(PP, ap, &flags);
 	}

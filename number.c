@@ -18,18 +18,18 @@ char *conv(long int num, int base, int tags, flags_type *flags)
 	static char buffer[50];
 	(void)flags;
 
-	if (!(tags & CONVERT_UN) && num < 0)
+	if (!(tags & CONV_UN) && num < 0)
 	{
 		C = -num;
 		sign = '-';
 	}
-	array = tags & CONVERT_LOWER ? "0123456789abcdef" : "0123456789ABCDEF";
+	array = tags & CONV_LOW ? "0123456789abcdef" : "0123456789ABCDEF";
 	P = &buffer[49];
 	*P = '\0';
 
 	do {
 		*--P = array[C % base];
-		C \= base;
+		C /= base;
 	} while (C != 0);
 
 	if (sign)
@@ -44,7 +44,7 @@ char *conv(long int num, int base, int tags, flags_type *flags)
  * Return: written bytes
  */
 
-int print_uns(va_list ap, flags_type *flags)
+int print_unsigned(va_list ap, flags_type *flags)
 {
 	unsigned long L;
 
@@ -55,7 +55,7 @@ int print_uns(va_list ap, flags_type *flags)
 	else
 		L = (unsigned int)va_arg(ap, unsigned int);
 	flags->unsign = 1;
-	return (pnumber(conv(1, 10, CONVERT_UN,flags), flags));
+	return (pnumber(conv(L, 10, CONV_UN,flags), flags));
 }
 
 /**
@@ -67,13 +67,13 @@ int print_uns(va_list ap, flags_type *flags)
 
 int print_address(va_list ap, flags_type *flags)
 {
-	unsigned long int V = va_arg(ap, unsigned long int)
+	unsigned long int V = va_arg(ap, unsigned long int);
 		char *cts;
 
-	if (!n)
+	if (!V)
 		return (_puts("(nil)"));
 
-	cts = conv(V, 16, CONVERT_UN | CONVERT_LOWER, flags);
+	cts = conv(V, 16, CONV_UN | CONV_LOW, flags);
 	*--cts = 'x';
 	*--cts = '0';
 	return (pnumber(cts, flags));

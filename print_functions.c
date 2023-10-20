@@ -16,8 +16,8 @@ int printT(va_list ap, flags_type *flags)
 	else if (flags->h_mod)
 		L = (short int)va_arg(ap, int);
 	else
-		l= (int)va_arg(ap, int);
-	return (pnumber(conv(1, 10, 0, flags), flags));
+		L = (int)va_arg(ap, int);
+	return (pnumber(conv(L, 10, 0, flags), flags));
 }
 
 /**
@@ -50,7 +50,7 @@ int printC(va_list ap, flags_type *flags)
 
 int printSt(va_list ap, flags_type *flags)
 {
-	char *cts = va_arg(ap char *), C = ' ';
+	char *cts = va_arg(ap, char *), C = ' ';
 	unsigned int K = 0, result = 0, i = 0 , j;
 
 	(void)flags;
@@ -64,17 +64,17 @@ int printSt(va_list ap, flags_type *flags)
 
 		if (flags->minus)
 		{
-			if (flags->precision != UNIT_MAX)
+			if (flags->precis != UINT_MAX)
 				for (i = 0; i < K; i++)
 					result += _putchar(*cts++);
 			else
 				result += _puts(cts);
 		}
 		while (j++ < flags->width)
-			ressult += _putchar(C);
+			result += _putchar(C);
 		if (!flags->minus)
 		{
-			if (flags->precis != UNIT_MAX)
+			if (flags->precis != UINT_MAX)
 				for (i = 0; i < K; i++)
 					result += _putchar(*cts++);
 			else result += _puts(cts);
@@ -89,7 +89,7 @@ int printSt(va_list ap, flags_type *flags)
  * Return: int
  */
 
-int printP(va_list ap, flags_type *flags)
+int print_P(va_list ap, flags_type *flags)
 {
 	(void)ap;
 	(void)flags;
@@ -124,8 +124,8 @@ int print_S(va_list ap, flags_type *flags)
 		}
 		else
 		{
-			result += _putchar(*str);
+			result += _putchar(*cts);
 		}
 	}
-	return (result)
+	return (result);
 }

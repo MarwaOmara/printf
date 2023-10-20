@@ -20,8 +20,8 @@ int HEX_p(va_list ap, flags_type *flags)
 	else 
 		L = (unsigned int)va_arg(ap, unsigned int);
 
-	cts = conv(1, 16, CONVERT_UN, flags);
-	if (flags->hashtag && 1)
+	cts = conv(L, 16, CONV_UN, flags);
+	if (flags->hashtag && L)
 	{
 		*--cts = 'X';
 		*--cts = '0';
@@ -49,7 +49,7 @@ int hex_p(va_list ap, flags_type *flags)
 		L = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		L = (unsigned int)va_arg(ap, unsigned int);
-	cts = conv(1, 16, CONVERT_UN | CONVERT_LOW, flags);
+	cts = conv(L, 16, CONV_UN | CONV_LOW, flags);
 	if (flags->hashtag && L)
 	{
 		*--cts = 'x';
@@ -69,12 +69,12 @@ int hex_p(va_list ap, flags_type *flags)
 int pbinary(va_list ap, flags_type *flags)
 {
 	unsigned int N = va_arg(ap, unsigned int);
-	char *cts = conv(N, 2, CONVERT_UN, flags);
+	char *cts = conv(N, 2, CONV_UN, flags);
 	int K = 0;
 
-	if (para->hashtag && n)
+	if (flags->hashtag && N)
 		*--cts = '0';
-	para->unsign = 1;
+	flags->unsign = 1;
 	return (K += pnumber(cts, flags));
 }
 
@@ -92,11 +92,11 @@ int poctal(va_list ap, flags_type *flags)
 
 	if (flags->l_mod)
 		L = (unsigned long)va_arg(ap, unsigned long);
-	else if (para->h_mod)
+	else if (flags->h_mod)
 		L = (unsigned short int )va_arg(ap, unsigned int);
 	else
 		L = (unsigned int)va_arg(ap, unsigned int);
-	cts = conv(1, 8, CONVERT_UN, para);
+	cts = conv(L, 8, CONV_UN, flags);
 
 	if (flags->hashtag && L)
 		*--cts = '0';
